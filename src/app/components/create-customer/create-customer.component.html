@@ -1,0 +1,67 @@
+<div class="container">
+  <img src="../../../assets/analysis.jpg" alt="background-image" />
+
+  <div class="form-container">
+    <form [formGroup]="customerForm" (ngSubmit)="create()">
+      <div class="title">
+        <h1>Add a Customer</h1>
+      </div>
+      <div>
+        <label for="firstName"> First Name <span class="star">*</span>:</label>
+        <input id="firstName" type="text" formControlName="firstName" />
+        <p
+          class="error-message"
+          *ngIf="customerForm.controls['firstName'].errors?.['required'] && 
+            customerForm.controls['firstName'].touched"
+        >
+          field is required
+        </p>
+      </div>
+
+      <div>
+        <label for="lastName"> Last Name <span class="star">*</span>: </label>
+        <input id="lastName" type="text" formControlName="lastName" />
+        <p
+          class="error-message"
+          *ngIf="customerForm.controls['lastName'].errors?.['required'] && customerForm.controls['lastName'].touched"
+        >
+          field is required
+        </p>
+      </div>
+
+      <div>
+        <label for="address"> Address <span class="star">*</span>: </label>
+        <input id="address" type="text" formControlName="address" />
+        <p
+          class="error-message"
+          *ngIf="customerForm.controls['address'].errors?.['required'] && customerForm.controls['address'].touched"
+        >
+          field is required
+        </p>
+      </div>
+
+      <div>
+        <label for="email"> Email <span class="star">*</span>: </label>
+        <input id="email" type="text" formControlName="email" />
+        <p
+          class="error-message"
+          *ngIf="customerForm.controls['email'].errors?.['required'] && customerForm.controls['email'].touched"
+        >
+          field is required
+        </p>
+      </div>
+
+      <div>
+        <label for="balance"> Balance <span class="star">*</span>: </label>
+        <input id="balance" type="number" formControlName="balance" />
+        <p
+          class="error-message"
+          *ngIf="customerForm.controls['balance'].errors?.['required'] && customerForm.controls['balance'].touched"
+        >
+          field is required
+        </p>
+      </div>
+      <button class="button" type="submit">Create Customer</button>
+    </form>
+  </div>
+</div>

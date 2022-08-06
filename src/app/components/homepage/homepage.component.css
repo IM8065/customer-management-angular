@@ -1,0 +1,245 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(34, 74, 101);
+}
+
+.hamburger-button {
+  display: none;
+}
+
+.header a {
+  text-decoration: none;
+  color: #111111;
+  font-size: 2rem;
+}
+
+.menu-items {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  margin: 24px 0;
+  margin-left: 0;
+  gap: 16px;
+}
+
+.menu-items li a,
+.logout {
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 8px 30px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 14.8px;
+  background-color: transparent;
+  border-radius: 5px;
+  border: none;
+  border: 1px solid #fff;
+  color: #fff;
+
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.menu-items li a:hover,
+.logout:hover {
+  background-color: rgb(80, 118, 139);
+}
+
+.menu-btn {
+  position: relative;
+  top: 16px;
+  left: 32px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+  z-index: 1;
+}
+.menu-btn__lines,
+.menu-btn__lines::before,
+.menu-btn__lines::after {
+  width: 1.5rem;
+  height: 0.1rem;
+  background-color: #fff;
+  transition: all 0.5s ease-in-out;
+}
+.menu-btn__lines::before,
+.menu-btn__lines::after {
+  content: "";
+  position: absolute;
+}
+.menu-btn__lines::before {
+  transform: translateY(-0.5rem);
+}
+.menu-btn__lines::after {
+  transform: translateY(0.5rem);
+}
+/* animation */
+.menu-btn.open .menu-btn__lines {
+  transform: translateX(2rem);
+  background-color: transparent;
+}
+.menu-btn.open .menu-btn__lines::before {
+  transform: rotate(45deg) translate(-1.5rem, 1.5rem);
+  background-color: #ffffff;
+}
+.menu-btn.open .menu-btn__lines::after {
+  transform: rotate(-45deg) translate(-1.5rem, -1.5rem);
+  background-color: #ffffff;
+}
+
+.user-display {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  margin-right: 16px;
+}
+
+.search {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: 2px solid rgb(19, 47, 67);
+  width: 100%;
+  padding: 10px;
+  padding-left: 40px;
+}
+
+.searchGroup {
+  position: relative;
+  margin-bottom: 10px;
+  width: 70%;
+}
+
+.searchGroup svg {
+  position: absolute;
+  color: green;
+  text-align: center;
+  top: 16px;
+  left: 12px;
+}
+
+.homepage-container {
+  padding: 16px;
+}
+
+form {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.select-input {
+  width: 25%;
+}
+
+.select-input select {
+  width: 100%;
+  padding: 16px;
+}
+
+.main-component {
+  margin-top: 32px;
+}
+
+.main-component h1 {
+  margin-bottom: 16px;
+}
+
+.customer-container {
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+}
+
+.customer-controls {
+  cursor: pointer;
+}
+
+@media (max-width: 975px) {
+  button {
+    font-size: revert;
+    margin: 16px 8px;
+    padding: 8px 16px;
+  }
+
+  .user-controls {
+    /* display: none; */
+    position: absolute;
+    background-color: red;
+    top: 100px;
+    left: 0;
+    z-index: 2;
+  }
+
+  .hamburger-button {
+    display: revert;
+  }
+
+  .menu-btn {
+    display: flex;
+  }
+  .menu-items {
+    flex-direction: column;
+    justify-content: space-around;
+    position: absolute;
+    top: 24px;
+    right: 0;
+    left: 0;
+    height: 100vh;
+    transform: translateX(-1000vw);
+    background-color: rgb(34, 74, 101);
+    transition: transform 0.3s ease-in-out;
+    z-index: 2;
+  }
+
+  .menu-items li a {
+    border: none;
+  }
+  .menu-items.open {
+    transform: translateX(0);
+  }
+  .menu-items li {
+    width: 100vw;
+    height: 100%;
+  }
+  .menu-items li a {
+    color: #ffffff;
+    font-size: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+  .menu-items li a:hover {
+    color: #111111;
+  }
+  .hide {
+    visibility: hidden;
+  }
+}
+
+@media (max-width: 400px) {
+  .menu-items li a {
+    font-size: 24px;
+  }
+
+  .user-display {
+    margin-top: 8px;
+    flex-direction: column;
+  }
+}
+
+/* 
+975px header needs love
+575px select input needs love
+ */

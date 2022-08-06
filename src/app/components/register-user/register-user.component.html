@@ -1,0 +1,66 @@
+<div class="container">
+  <img src="../../../assets/analysis.jpg" alt="background-image" />
+
+  <div class="form-container">
+    <form [formGroup]="userForm" (ngSubmit)="registerUser()">
+      <div class="title">
+        <h1>Add a User</h1>
+      </div>
+      <div>
+        <label for="username"> Username <span class="star">*</span>: </label>
+        <input
+          id="username"
+          type="text"
+          formControlName="username"
+          name="username"
+          required
+        />
+        <p
+          class="error-message"
+          *ngIf="userForm.controls['username'].errors?.['required'] && 
+        userForm.controls['username'].touched"
+        >
+          field is required
+        </p>
+      </div>
+
+      <div>
+        <label for="password"> Password <span class="star">*</span>:</label>
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          name="password"
+          required
+        />
+        <p
+          class="error-message"
+          *ngIf="userForm.controls['password'].errors?.['required'] && 
+        userForm.controls['password'].touched"
+        >
+          field is required
+        </p>
+      </div>
+
+      <div>
+        <label for="firstName"> Role <span class="star">*</span>:</label>
+        <input
+          id="role"
+          type="text"
+          formControlName="role"
+          name="role"
+          required
+        />
+        <p
+          class="error-message"
+          *ngIf="userForm.controls['role'].errors?.['required'] && 
+        userForm.controls['role'].touched"
+        >
+          field is required
+        </p>
+      </div>
+
+      <button type="submit">Register</button>
+    </form>
+  </div>
+</div>
