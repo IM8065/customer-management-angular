@@ -10,7 +10,7 @@ import { Customer, CustomerService } from 'src/app/services/customer.service';
 })
 export class EditCustomerComponent implements OnInit {
   currentCustomer: Customer | undefined;
-
+  success: boolean = false;
   customerForm = new FormGroup({
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
@@ -29,6 +29,16 @@ export class EditCustomerComponent implements OnInit {
     const customerId = this.route.snapshot.paramMap.get('id');
     this.customerService.viewCustomer(Number(customerId)).subscribe((res) => {
       this.currentCustomer = res;
+
+      this.customerForm
+        .get('firstName')
+        ?.setValue(this.currentCustomer?.firstName);
+      this.customerForm
+        .get('lastName')
+        ?.setValue(this.currentCustomer?.lastName);
+      this.customerForm.get('address')?.setValue(this.currentCustomer?.address);
+      this.customerForm.get('email')?.setValue(this.currentCustomer?.email);
+      this.customerForm.get('balance')?.setValue(this.currentCustomer?.balance);
     });
   }
 
@@ -44,7 +54,10 @@ export class EditCustomerComponent implements OnInit {
       .updateCustomer(this.currentCustomer?.id || 0, updatedCustomer)
       .subscribe((res) => {
         console.log(res);
-        this.router.navigate(['homepage']);
+        this.success = true;
+        setTimeout(() => {
+          this.router.navigate(['homepage']);
+        }, 2000);
       });
   }
 }

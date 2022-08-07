@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth.guard';
 import { CreateCustomerComponent } from './components/create-customer/create-customer.component';
 import { EditCustomerComponent } from './components/edit-customer/edit-customer.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
@@ -13,11 +14,24 @@ const routes: Routes = [
     component: LoginComponent,
   },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'homepage', component: HomepageComponent },
-  { path: 'create-customer', component: CreateCustomerComponent },
-  { path: 'edit-customer/:id', component: EditCustomerComponent },
-  { path: 'register-user', component: RegisterUserComponent },
+  { path: 'homepage', component: HomepageComponent, canActivate: [AuthGuard] },
+  {
+    path: 'create-customer',
+    component: CreateCustomerComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'edit-customer/:id',
+    component: EditCustomerComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'register-user',
+    component: RegisterUserComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'error-page', component: ErrorPageComponent },
+  { path: '**', component: ErrorPageComponent },
 ];
 
 @NgModule({

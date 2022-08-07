@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/User';
 
@@ -9,14 +10,14 @@ import { User } from 'src/app/User';
   styleUrls: ['./register-user.component.css'],
 })
 export class RegisterUserComponent implements OnInit {
-  // user: User = new User('', '');
+  success: boolean = false;
   userForm = new FormGroup({
     username: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
     role: new FormControl('', [Validators.required]),
   });
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -27,6 +28,14 @@ export class RegisterUserComponent implements OnInit {
       role: this.userForm.controls['role'].value,
     };
     console.log(user);
-    this.authService.registerUser(user);
+    this.authService.registerUser(user).subscribe((res) => {
+      console.log(res);
+      if (res) {
+        this.success = true;
+        setTimeout(() => {
+          this.router.navigate(['homepage']);
+        }, 2000);
+      }
+    });
   }
 }

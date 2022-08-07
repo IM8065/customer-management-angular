@@ -42,6 +42,9 @@ button[type="submit"] {
 
 .headline {
   position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 16px;
   width: 100%;
   padding: 24px;
   top: 0;
@@ -49,6 +52,12 @@ button[type="submit"] {
   z-index: 1;
   color: white;
   background-color: rgba(11, 19, 26, 0.8);
+}
+
+.logo-container img {
+  width: 75px;
+  height: 75px;
+  object-fit: cover;
 }
 
 @media (max-width: 1000px) {

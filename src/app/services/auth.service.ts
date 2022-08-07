@@ -25,20 +25,11 @@ export class AuthService {
   }
 
   registerUser(user: User) {
-    try {
-      return this.http
-        .post('http://localhost:8080/api/auth/register', user, this.httpOptions)
-        .subscribe((res) => {
-          console.log(res);
-          if (res) {
-            let resJSON = JSON.stringify(res);
-            localStorage.setItem('userdetails', resJSON);
-            this.router.navigate(['homepage']);
-          }
-        });
-    } catch (e) {
-      return 'An error occured, please try again later.';
-    }
+    return this.http.post(
+      'http://localhost:8080/api/auth/register',
+      user,
+      this.httpOptions
+    );
   }
 
   deleteUser(id: number) {
@@ -62,5 +53,12 @@ export class AuthService {
 
   toggleViewUsers() {
     this.showUsers = !this.showUsers;
+  }
+
+  isLoggedIn(): boolean {
+    if (localStorage.getItem('userdetails')) {
+      return true;
+    }
+    return false;
   }
 }

@@ -72,6 +72,34 @@ button[type="submit"] {
   background-color: rgba(0, 0, 0, 0.5);
 } */
 
+.success-message {
+  width: 100%;
+  height: 100%;
+}
+.success-message p {
+  color: #270;
+  width: 50%;
+  background-color: #dff2bf;
+  padding: 8px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  animation: appear 1.5s;
+  bottom: 0;
+  transform: translateY(50px);
+}
+
+@keyframes appear {
+  0% {
+    transform: translateY(50px);
+  }
+  100% {
+    transform: translateY(-16px);
+  }
+}
+
 @media (max-width: 1000px) {
   .form-container {
     width: 45%;

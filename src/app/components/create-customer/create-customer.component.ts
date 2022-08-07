@@ -9,6 +9,7 @@ import { Customer, CustomerService } from 'src/app/services/customer.service';
   styleUrls: ['./create-customer.component.css'],
 })
 export class CreateCustomerComponent implements OnInit {
+  success: boolean = false;
   customerForm = new FormGroup({
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
@@ -34,7 +35,10 @@ export class CreateCustomerComponent implements OnInit {
 
     this.customerService.createCustomer(customer).subscribe((res) => {
       this.customerForm.reset();
-      this.router.navigate(['homepage']);
+      this.success = true;
+      setTimeout(() => {
+        this.router.navigate(['homepage']);
+      }, 2000);
     });
   }
 }
