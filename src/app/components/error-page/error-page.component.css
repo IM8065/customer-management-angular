@@ -1,0 +1,62 @@
+#notfound {
+  position: relative;
+  height: 100vh;
+  background-color: rgb(34, 74, 101);
+}
+
+#notfound .notfound {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.notfound {
+  max-width: 460px;
+  width: 100%;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.notfound .notfound-404 {
+  height: 158px;
+  line-height: 153px;
+  margin: 16px;
+}
+
+.notfound .notfound-404 h1 {
+  color: rgb(169, 52, 52);
+  font-size: 220px;
+  letter-spacing: 10px;
+  margin: 0px;
+  font-weight: 700;
+  text-shadow: 2px 2px 0px rgb(80, 118, 139), -2px -2px 0px rgb(80, 118, 139);
+}
+
+.notfound .notfound-404 h1 > span {
+  text-shadow: 2px 2px 0px rgb(80, 118, 139), -2px -2px 0px rgb(80, 118, 139),
+    0px 0px 8px rgb(80, 118, 139);
+}
+
+.notfound p {
+  color: #c9c9c9;
+  font-size: 16px;
+  font-weight: 400;
+  margin-top: 0px;
+  margin-bottom: 32px;
+}
+
+.notfound a {
+  width: 100%;
+  background-color: rgb(80, 118, 139);
+  color: white;
+  padding: 14px 20px;
+  margin: 16px 0;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 18px;
+  text-decoration: none;
+}

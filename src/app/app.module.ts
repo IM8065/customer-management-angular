@@ -10,6 +10,8 @@ import { HomepageComponent } from './components/homepage/homepage.component';
 import { CreateCustomerComponent } from './components/create-customer/create-customer.component';
 import { EditCustomerComponent } from './components/edit-customer/edit-customer.component';
 import { RegisterUserComponent } from './components/register-user/register-user.component';
+import { ErrorPageComponent } from './components/error-page/error-page.component';
+import { ViewUsersComponent } from './components/view-users/view-users.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { RegisterUserComponent } from './components/register-user/register-user.
     CreateCustomerComponent,
     EditCustomerComponent,
     RegisterUserComponent,
+    ErrorPageComponent,
+    ViewUsersComponent,
   ],
   imports: [
     BrowserModule,

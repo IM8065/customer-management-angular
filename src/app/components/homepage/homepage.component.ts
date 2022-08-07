@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 import { Customer, CustomerService } from 'src/app/services/customer.service';
 
 @Component({
@@ -9,25 +10,50 @@ import { Customer, CustomerService } from 'src/app/services/customer.service';
 })
 export class HomepageComponent implements OnInit {
   customerList: Customer[] | undefined;
+  filter: string | undefined;
   username: string = '';
+
   constructor(
     private router: Router,
-    private customerService: CustomerService
+    private customerService: CustomerService,
+    public userService: AuthService
   ) {}
 
   ngOnInit(): void {
     let userDetailsString = localStorage.getItem('userdetails') || '';
     let userDetailsObj = JSON.parse(userDetailsString);
     this.username = userDetailsObj.username;
-    this.customerService.getCustomers().subscribe((res: Customer[]) => {
+    this.customerService.getCustomers().subscribe({
+      next: (res: Customer[]) => {
+        this.customerList = res;
+        console.log(res);
+      },
+      error: (err) => {
+        console.log(err);
+        this.router.navigate(['error-page']);
+      },
+      complete: () => {
+        console.log('Complete');
+      },
+    });
+  }
+
+  searchFilter() {
+    this.customerService.getFilteredCustomrs(this.filter).subscribe((res) => {
       this.customerList = res;
       console.log(res);
     });
   }
 
   delete(id: any) {
-    this.customerService.deleteCustomer(id).subscribe((res) => {
-      this.customerList = this.customerList?.filter((el) => el.id != id);
+    this.customerService.deleteCustomer(id).subscribe({
+      next: (res) => {
+        this.customerList = this.customerList?.filter((el) => el.id != id);
+      },
+      error: (err) => {
+        console.log(err);
+        this.router.navigate(['error-page']);
+      },
     });
   }
 

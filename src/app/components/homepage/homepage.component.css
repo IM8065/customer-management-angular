@@ -133,8 +133,10 @@ form {
   align-items: center;
 }
 
-.select-input {
+.searchButton {
+  cursor: pointer;
   width: 25%;
+  padding: 12px 0;
 }
 
 .select-input select {

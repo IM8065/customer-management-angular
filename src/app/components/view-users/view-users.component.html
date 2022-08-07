@@ -1,0 +1,14 @@
+<div class="overlay" (click)="userService.toggleViewUsers()"></div>
+<div *ngIf="users" class="users-display">
+  <div *ngFor="let user of users">
+    <div class="user-container">
+      <div class="user-details">
+        <h4>Username: {{ user.username }}</h4>
+        <p>Role: {{ user.role }}</p>
+      </div>
+    </div>
+  </div>
+  <button class="close-button" (click)="userService.toggleViewUsers()">
+    Close
+  </button>
+</div>

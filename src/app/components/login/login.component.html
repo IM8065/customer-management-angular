@@ -6,7 +6,7 @@
   <div class="headline">
     <h1>Customer Management Portal</h1>
   </div>
-  <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+  <form [formGroup]="userForm" (ngSubmit)="onLogin()">
     <p style="color: red" *ngIf="errorMessage">{{ errorMessage }}</p>
     <div>
       <label for="username"> Username </label>

@@ -13,6 +13,8 @@ export class AuthService {
     }),
   };
 
+  showUsers: boolean = false;
+
   constructor(private http: HttpClient, private router: Router) {}
 
   authenticateUser(username: string, password: string) {
@@ -49,5 +51,16 @@ export class AuthService {
       user,
       this.httpOptions
     );
+  }
+
+  viewAllUsers() {
+    return this.http.get<User[]>(
+      `http://localhost:8080/api/auth/list`,
+      this.httpOptions
+    );
+  }
+
+  toggleViewUsers() {
+    this.showUsers = !this.showUsers;
   }
 }

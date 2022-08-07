@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { take } from 'rxjs';
 
 export interface Customer {
@@ -15,9 +15,11 @@ export interface Customer {
   providedIn: 'root',
 })
 export class CustomerService {
+  parameters = new HttpParams();
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
+      Accept: 'application/json',
     }),
   };
   constructor(private http: HttpClient) {}
@@ -45,6 +47,13 @@ export class CustomerService {
 
   getCustomers() {
     return this.http.get<Customer[]>('http://localhost:8080/api/customer/list');
+  }
+
+  getFilteredCustomrs(filterString: any) {
+    return this.http.get<Customer[]>(
+      `http://localhost:8080/api/customer/listFilter?filter=${filterString}`,
+      this.httpOptions
+    );
   }
 
   updateCustomer(id: number, customer: Customer) {
