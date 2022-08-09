@@ -33,6 +33,7 @@ export class AuthService {
   }
 
   deleteUser(id: number) {
+    console.log(id);
     return this.http.delete(`http://localhost:8080/api/auth/${id}`);
   }
 

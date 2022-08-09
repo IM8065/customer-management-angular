@@ -10,7 +10,6 @@
     <h1>Customer Management Portal</h1>
   </div>
   <form [formGroup]="userForm" (ngSubmit)="onLogin()">
-    <p style="color: red" *ngIf="errorMessage">{{ errorMessage }}</p>
     <div>
       <label for="username"> Username </label>
       <input
@@ -37,4 +36,12 @@
 
     <button type="submit">Submit</button>
   </form>
+</div>
+
+<div class="success-message" *ngIf="success">
+  <p>Authentication Successful</p>
+</div>
+
+<div class="error-message" *ngIf="error">
+  <p>invalid credentials, please try again</p>
 </div>

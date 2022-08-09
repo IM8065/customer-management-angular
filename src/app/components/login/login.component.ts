@@ -10,13 +10,15 @@ import { User } from 'src/app/User';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  // user: User = new User('', '');
+  success: boolean = false;
+  error: boolean = false;
+
   userForm = new FormGroup({
     username: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
     role: new FormControl('', [Validators.required]),
   });
-  errorMessage: string = '';
+
   constructor(private auth: AuthService, private router: Router) {}
 
   ngOnInit(): void {}
@@ -27,20 +29,24 @@ export class LoginComponent implements OnInit {
       password: this.userForm.controls['password'].value,
       role: this.userForm.controls['role'].value,
     };
-    this.auth
-      .authenticateUser(user.username, user.password)
-      .subscribe((res: any) => {
-        try {
-          if (res.password == user.password) {
-            let resJSON = JSON.stringify(res);
-            localStorage.setItem('userdetails', resJSON);
+    this.auth.authenticateUser(user.username, user.password).subscribe({
+      next: (res: any) => {
+        if (res.password == user.password) {
+          this.success = true;
+          let resJSON = JSON.stringify(res);
+          localStorage.setItem('userdetails', resJSON);
+          console.log(res);
+          setTimeout(() => {
+            this.success = false;
             this.router.navigate(['homepage']);
-          } else {
-            this.errorMessage = 'Username or password are incorrect';
-          }
-        } catch (e) {
-          this.errorMessage = 'Could not find user';
+          }, 2000);
         }
-      });
+      },
+      error: (e) => {
+        this.error = true;
+
+        console.log(e);
+      },
+    });
   }
 }

@@ -23,6 +23,11 @@
   gap: 16px;
 }
 
+.user-display p {
+  color: rgb(237, 180, 73);
+  font-size: 18px;
+}
+
 .menu-items li a,
 .logout {
   cursor: pointer;
@@ -137,6 +142,10 @@ form {
   cursor: pointer;
   width: 25%;
   padding: 12px 0;
+  color: rgb(34, 74, 101);
+  background-color: transparent;
+  border-radius: 5px;
+  border-color: rgb(34, 74, 101);
 }
 
 .select-input select {
@@ -166,6 +175,49 @@ form {
   cursor: pointer;
 }
 
+.success-message,
+.error-message {
+  width: 100%;
+  height: 100%;
+}
+.success-message p {
+  color: #270;
+  width: 50%;
+  background-color: #dff2bf;
+  padding: 8px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  animation: appear 1.5s;
+  bottom: 0;
+  transform: translateY(50px);
+}
+.error-message p {
+  color: #d8000c;
+  width: 50%;
+  background-color: #ffbaba;
+  padding: 8px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  animation: appear 1.5s;
+  bottom: 0;
+  transform: translateY(0px);
+}
+
+@keyframes appear {
+  0% {
+    transform: translateY(50px);
+  }
+  100% {
+    transform: translateY(-16px);
+  }
+}
+
 @media (max-width: 975px) {
   button {
     font-size: revert;
@@ -174,7 +226,6 @@ form {
   }
 
   .user-controls {
-    /* display: none; */
     position: absolute;
     background-color: red;
     top: 100px;
@@ -240,8 +291,3 @@ form {
     flex-direction: column;
   }
 }
-
-/* 
-975px header needs love
-575px select input needs love
- */

@@ -12,6 +12,10 @@ export class HomepageComponent implements OnInit {
   customerList: Customer[] | undefined;
   filter: string | undefined;
   username: string = '';
+  role: string = '';
+
+  deleteSuccess: boolean = false;
+  deleteError: boolean = false;
 
   constructor(
     private router: Router,
@@ -23,6 +27,7 @@ export class HomepageComponent implements OnInit {
     let userDetailsString = localStorage.getItem('userdetails') || '';
     let userDetailsObj = JSON.parse(userDetailsString);
     this.username = userDetailsObj.username;
+    this.role = userDetailsObj.role;
     this.customerService.getCustomers().subscribe({
       next: (res: Customer[]) => {
         this.customerList = res;
@@ -49,10 +54,17 @@ export class HomepageComponent implements OnInit {
     this.customerService.deleteCustomer(id).subscribe({
       next: (res) => {
         this.customerList = this.customerList?.filter((el) => el.id != id);
+        this.deleteSuccess = true;
+        setTimeout(() => {
+          this.deleteSuccess = false;
+        }, 2000);
       },
       error: (err) => {
-        console.log(err);
-        this.router.navigate(['error-page']);
+        this.deleteError = true;
+        setTimeout(() => {
+          this.deleteError = false;
+          this.router.navigate(['error-page']);
+        }, 2000);
       },
     });
   }
@@ -86,5 +98,9 @@ export class HomepageComponent implements OnInit {
     userDisplay.classList.toggle('hide');
     menuBtn.classList.toggle('open');
     menuItems.classList.toggle('open');
+  }
+
+  isAdmin() {
+    return this.role == 'admin';
   }
 }

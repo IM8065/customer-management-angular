@@ -6,10 +6,10 @@
     <li>
       <a class="menu-item" (click)="registerCustomer()">Register Customer</a>
     </li>
-    <li>
+    <li *ngIf="isAdmin()">
       <a class="menu-item" (click)="registerUser()">Register New User</a>
     </li>
-    <li>
+    <li *ngIf="isAdmin()">
       <a class="menu-item" (click)="userService.toggleViewUsers()"
         >View Users</a
       >
@@ -105,4 +105,12 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="success-message" *ngIf="deleteSuccess">
+  <p>Successfully deleted customer</p>
+</div>
+
+<div class="error-message" *ngIf="deleteError">
+  <p>There was an error deleting the customer</p>
 </div>

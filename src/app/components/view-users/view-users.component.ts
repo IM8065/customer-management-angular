@@ -24,4 +24,16 @@ export class ViewUsersComponent implements OnInit {
       },
     });
   }
+
+  deleteUser(id: any) {
+    this.userService.deleteUser(id).subscribe({
+      next: (res) => {
+        this.users = this.users?.filter((el) => el.id != id);
+        console.log(res);
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
 }

@@ -11,6 +11,7 @@ import { Customer, CustomerService } from 'src/app/services/customer.service';
 export class EditCustomerComponent implements OnInit {
   currentCustomer: Customer | undefined;
   success: boolean = false;
+  error: boolean = false;
   customerForm = new FormGroup({
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
@@ -52,12 +53,21 @@ export class EditCustomerComponent implements OnInit {
     };
     this.customerService
       .updateCustomer(this.currentCustomer?.id || 0, updatedCustomer)
-      .subscribe((res) => {
-        console.log(res);
-        this.success = true;
-        setTimeout(() => {
-          this.router.navigate(['homepage']);
-        }, 2000);
+      .subscribe({
+        next: (res) => {
+          console.log(res);
+          this.success = true;
+          setTimeout(() => {
+            this.success = false;
+            this.router.navigate(['homepage']);
+          }, 2000);
+        },
+        error: (e) => {
+          this.error = true;
+          setTimeout(() => {
+            this.error = false;
+          }, 2000);
+        },
       });
   }
 }

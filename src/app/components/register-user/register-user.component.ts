@@ -11,6 +11,7 @@ import { User } from 'src/app/User';
 })
 export class RegisterUserComponent implements OnInit {
   success: boolean = false;
+  error: boolean = false;
   userForm = new FormGroup({
     username: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
@@ -28,14 +29,22 @@ export class RegisterUserComponent implements OnInit {
       role: this.userForm.controls['role'].value,
     };
     console.log(user);
-    this.authService.registerUser(user).subscribe((res) => {
-      console.log(res);
-      if (res) {
-        this.success = true;
+    this.authService.registerUser(user).subscribe({
+      next: (res) => {
+        console.log(res);
+        if (res) {
+          this.success = true;
+          setTimeout(() => {
+            this.router.navigate(['homepage']);
+          }, 2000);
+        }
+      },
+      error: (e) => {
+        this.error = true;
         setTimeout(() => {
-          this.router.navigate(['homepage']);
+          this.error = false;
         }, 2000);
-      }
+      },
     });
   }
 }
