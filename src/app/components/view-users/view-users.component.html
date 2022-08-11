@@ -1,20 +1,14 @@
-<div class="overlay" (click)="userService.toggleViewUsers()"></div>
 <div *ngIf="users" class="users-display">
+  <h1>Users:</h1>
   <div *ngFor="let user of users">
     <div class="user-container">
       <div class="user-details">
         <h4>Username: {{ user.username }}</h4>
         <p>Role: {{ user.role }}</p>
       </div>
-
-      <div>
-        <button class="delete-button" (click)="deleteUser(user.id)">
-          Delete
-        </button>
-      </div>
     </div>
   </div>
-  <button class="close-button" (click)="userService.toggleViewUsers()">
+  <!-- <button class="close-button" (click)="userService.toggleViewUsers()">
     Close
-  </button>
+  </button> -->
 </div>

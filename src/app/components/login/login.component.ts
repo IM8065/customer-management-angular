@@ -44,7 +44,9 @@ export class LoginComponent implements OnInit {
       },
       error: (e) => {
         this.error = true;
-
+        setTimeout(() => {
+          this.error = false;
+        }, 2000);
         console.log(e);
       },
     });

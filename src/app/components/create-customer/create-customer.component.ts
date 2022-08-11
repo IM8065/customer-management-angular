@@ -32,11 +32,10 @@ export class CreateCustomerComponent implements OnInit {
       address: this.customerForm.controls['address'].value,
       email: this.customerForm.controls['email'].value,
       balance: this.customerForm.controls['balance'].value,
+      user: JSON.parse(localStorage.getItem('userdetails') || ''),
     };
 
-    // setTimeout(() => {
-    //   this.deleteSuccess = false;
-    // }, 2000);
+    console.log(customer);
 
     this.customerService.createCustomer(customer).subscribe({
       next: (res) => {

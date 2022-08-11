@@ -43,14 +43,19 @@
       </div>
 
       <div>
-        <label for="firstName"> Role <span class="star">*</span>:</label>
-        <input
+        <label for="role"> Role <span class="star">*</span>:</label>
+        <br />
+        <!-- <input
           id="role"
           type="text"
           formControlName="role"
           name="role"
           required
-        />
+        /> -->
+        <select id="role" formControlName="role" name="role" required="">
+          <option value="user">User</option>
+          <option value="admin">Admin</option>
+        </select>
         <p
           class="error-message"
           *ngIf="userForm.controls['role'].errors?.['required'] && 

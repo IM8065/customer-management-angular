@@ -3,17 +3,17 @@
     <div class="menu-btn__lines"></div>
   </div>
   <ul class="menu-items">
-    <li>
+    <li *ngIf="!isAdmin()">
       <a class="menu-item" (click)="registerCustomer()">Register Customer</a>
     </li>
     <li *ngIf="isAdmin()">
       <a class="menu-item" (click)="registerUser()">Register New User</a>
     </li>
-    <li *ngIf="isAdmin()">
+    <!-- <li *ngIf="isAdmin()">
       <a class="menu-item" (click)="userService.toggleViewUsers()"
         >View Users</a
       >
-    </li>
+    </li> -->
   </ul>
   <div class="user-display">
     <p>Hello, {{ username }}</p>
@@ -24,7 +24,7 @@
 <app-view-users *ngIf="userService.showUsers"></app-view-users>
 
 <div class="homepage-container">
-  <form>
+  <form *ngIf="!isAdmin()">
     <div class="searchGroup">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -44,12 +44,11 @@
   </form>
 
   <div class="main-component">
-    <h1>Customers:</h1>
-    <div *ngIf="isEmpty()">
-      <p>No customers to display at the moment</p>
-    </div>
-
-    <div *ngIf="customerList">
+    <div *ngIf="customerList && !isAdmin()">
+      <h1>Customers:</h1>
+      <div *ngIf="isEmpty()">
+        <p>No customers to display at the moment</p>
+      </div>
       <div *ngFor="let customer of customerList">
         <div class="customer-container">
           <div class="customer-details">
@@ -103,6 +102,10 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <div *ngIf="isAdmin()">
+      <app-view-users></app-view-users>
     </div>
   </div>
 </div>

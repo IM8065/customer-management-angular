@@ -15,31 +15,44 @@ export class AuthService {
 
   showUsers: boolean = false;
 
+  urlString: string = 'http://127.0.0.1:7001/CustomerManagment-0.0.1-SNAPSHOT';
+  // urlString: string = 'http://127.0.0.1:8080';
+
   constructor(private http: HttpClient, private router: Router) {}
 
   authenticateUser(username: string, password: string) {
-    const url = 'http://localhost:8080/api/auth/login';
     let loginObj = { username: username, password: password };
 
-    return this.http.post(url, loginObj, this.httpOptions);
+    return this.http.post(
+      `${this.urlString}/api/auth/login`,
+      loginObj,
+      this.httpOptions
+    );
   }
 
   registerUser(user: User) {
+    let username =
+      JSON.parse(localStorage.getItem('userdetails') || '').username || '';
+    let customOptions = {
+      headers: new HttpHeaders({
+        username: username,
+      }),
+    };
     return this.http.post(
-      'http://localhost:8080/api/auth/register',
+      `${this.urlString}/api/auth/register`,
       user,
-      this.httpOptions
+      customOptions
     );
   }
 
   deleteUser(id: number) {
     console.log(id);
-    return this.http.delete(`http://localhost:8080/api/auth/${id}`);
+    return this.http.delete(`${this.urlString}/api/auth/${id}`);
   }
 
   updateUser(id: number, user: User) {
     this.http.patch(
-      `http://localhost:8080/api/auth/update/${id}`,
+      `${this.urlString}/api/auth/update/${id}`,
       user,
       this.httpOptions
     );
@@ -47,7 +60,7 @@ export class AuthService {
 
   viewAllUsers() {
     return this.http.get<User[]>(
-      `http://localhost:8080/api/auth/list`,
+      `${this.urlString}/api/auth/list`,
       this.httpOptions
     );
   }

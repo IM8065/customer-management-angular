@@ -1,4 +1,4 @@
-.overlay {
+/* .overlay {
   position: fixed;
   top: 0px;
   right: 0px;
@@ -19,7 +19,7 @@
   border-radius: 5px;
   background-color: white;
   z-index: 4;
-}
+} */
 
 .user-container {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -28,12 +28,9 @@
   font-family: Arial, Helvetica, sans-serif;
   font-size: 18px;
   margin: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 
-.delete-button {
+/* .delete-button {
   color: #d8000c;
   border: 0;
   border: 1px solid #d8000c;
@@ -42,7 +39,7 @@
   font-size: 16px;
   padding: 10px 15px;
   border-radius: 5px;
-}
+} */
 
 .close-button {
   width: calc(100% - 32px);

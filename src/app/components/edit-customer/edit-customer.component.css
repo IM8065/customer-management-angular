@@ -18,7 +18,7 @@
 }
 .form-container {
   background-color: rgb(34, 74, 101);
-  height: calc(100vh + 330px);
+  height: calc(100vh);
 }
 
 form {

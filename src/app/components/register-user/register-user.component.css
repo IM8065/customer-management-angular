@@ -49,6 +49,10 @@ input {
   box-sizing: border-box;
 }
 
+label {
+  margin-top: 8px;
+}
+
 button[type="submit"] {
   width: 100%;
   background-color: rgb(237, 180, 73);
@@ -95,6 +99,10 @@ button[type="submit"] {
   animation: error 1.5s;
   bottom: 0;
   transform: translateY(0px);
+}
+
+#role {
+  padding: 8px;
 }
 
 @keyframes appear {
